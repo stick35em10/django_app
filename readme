@@ -1,4 +1,4 @@
-![Django on Render](mysite/images/running_django_on_render.png "Running Django on Render")
+![Django on Render](images/running_django_on_render.png "Running Django on Render")
 
 Deploy a Django App on Render
 This guide walks through deploying a Django Python app on Render. You can use your existing Django project or create one from scratch.
