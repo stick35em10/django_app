@@ -126,3 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add this block to configure the port
 if 'PORT' in os.environ:
     port = os.environ.get('PORT')
+    print(f"port = os.environ.get: {port}")
