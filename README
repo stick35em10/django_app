@@ -3,7 +3,7 @@
 Deploy a Django App on Render
 This guide walks through deploying a Django Python app on Render. You can use your existing Django project or create one from scratch.
 
-![Running Django on Render](https://github.com/stick35em10/django_app/raw/main/images/running_django_on_render.png)
+![Running Django on Render](django_app/images/running_django_on_render.png)
 
 If you're new to Django, we recommend first reading the official guide to Writing your first Django project.
 
