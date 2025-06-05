@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-9n7@)x8=%57t3-uglx238hkg$14%6d@r9w_ij!$bygi1!@_afc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+#Invalid HTTP_HOST header: 'django-hfxu.onrender.com'. You may need to add 'django-hfxu.onrender.com
+ALLOWED_HOSTS = ['django-hfxu.onrender.com']
 
 
 # Application definition
