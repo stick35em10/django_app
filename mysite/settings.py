@@ -13,20 +13,38 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9n7@)x8=%57t3-uglx238hkg$14%6d@r9w_ij!$bygi1!@_afc'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") 
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #Invalid HTTP_HOST header: 'django-hfxu.onrender.com'. You may need to add 'django-hfxu.onrender.com
-ALLOWED_HOSTS = ['django-hfxu.onrender.com']
+
+#CSRF_TRUSTED_ORIGINS = [
+#    "https://8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev",
+    # If you have other trusted origins (e.g., for production), add them here too.
+    # Example: "https://yourproductiondomain.com"
+#]
+
+#DisallowedHost at /
+#Invalid HTTP_HOST header: 'django-app-02-run-script.onrender.com'. You may need to add 'django-app-02-run-script.onrender.com' to ALLOWED_HOSTS.
+#DisallowedHost at /
+#Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+ALLOWED_HOSTS = ['django-app-02-run-script.onrender.com', '127.0.0.1',"8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev",]
 
 
 # Application definition
@@ -38,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'meus_projectos',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +93,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+"""
+try comment more than one line
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,6 +103,32 @@ DATABASES = {
     }
 }
 
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Or 'django.db.backends.mysql' etc.
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD': os.environ.get("PASSWORD"),
+        'HOST': os.environ.get("HOST"),        
+        'PORT': os.environ.get("PORT"),    
+    }
+}
+
+"""
+Para as maiores tabelas no banco de dados atual:
+SELECT
+    relname AS "Table",
+    pg_size_pretty(pg_total_relation_size(relid)) AS "Total Size",
+    pg_size_pretty(pg_relation_size(relid)) AS "Table Size",
+    pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) AS "Indexes Size"
+FROM
+    pg_catalog.pg_statio_user_tables
+ORDER BY
+    pg_total_relation_size(relid) DESC
+LIMIT 20;
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -122,8 +170,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Add this block to configure the port
-if 'PORT' in os.environ:
-    port = os.environ.get('PORT')
-    print(f"port = os.environ.get: {port}")
