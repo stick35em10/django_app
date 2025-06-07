@@ -31,7 +31,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") 
 
-DEBUG = False #True
+DEBUG = True #False #True
 #Invalid HTTP_HOST header: 'django-hfxu.onrender.com'. You may need to add 'django-hfxu.onrender.com
 
 #CSRF_TRUSTED_ORIGINS = [
