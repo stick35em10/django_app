@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-9n7@)x8=%57t3-uglx238hkg$14%6d@r9w_ij!$bygi1!@_afc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #Invalid HTTP_HOST header: 'django-hfxu.onrender.com'. You may need to add 'django-hfxu.onrender.com
-ALLOWED_HOSTS = ['django-hfxu.onrender.com']
+
+
+ALLOWED_HOSTS = ['django-hfxu.onrender.com','127.0.0.1','django-app-0hq7.onrender.com']
 
 
 # Application definition
@@ -116,7 +118,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Remove or comment out this block if you don't have a global 'static' folder:
+STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, 'static'), # This line is causing the warning if the folder doesn't exist
+]
+# If STATICFILES_DIRS is empty, you can even set it to an empty list:
+# STATICFILES_DIRS = []
+
+# ... rest of your settings ...
+
+# Define where your static files are served from in development
+#STATIC_URL = '/static/'
+
+# Define where Django should collect static files for deployment
+# This is a full filesystem path. It should be outside of your project directory
+# but within a directory that Render (or your hosting) can access.
+# A common pattern is to put it in a 'staticfiles' directory at the root of your project.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Optional: List of paths to search for static files
+# This is where Django looks for static files beyond those in app-specific 'static/' directories.
+STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'), # If you have a 'static' folder in your project root
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
