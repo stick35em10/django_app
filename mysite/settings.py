@@ -103,11 +103,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #    }
 #}
 
-#DATABASE_NAME=dbtodo_1q1f
-#DATABASE_USER=userdbtodo
-#DATABASE_PASSWORD=ZLJhQpucquFZJl20ywbSxuvVXZLPkkai
-#DATABASE_HOST=dpg-d103sg6mcj7s7386avmg-a.frankfurt-postgres.render.com
-#DATABASE_PORT=5432 
+ 
 
 #port = os.environ.get('PORT')
 """
