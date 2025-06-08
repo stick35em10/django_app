@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
     '8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev',
     '8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev',
     'localhost',
+    'django-app-1-ej4m.onrender.com' # branch 03_dj_database_url
     ]
 
 # Add the domain to CSRF_TRUSTED_ORIGINS
