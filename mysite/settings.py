@@ -34,6 +34,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
+    'django-app-2-l03i.onrender.com',
     'django-hfxu.onrender.com',
     '127.0.0.1',
     'django-app-0hq7.onrender.com',
