@@ -12,6 +12,8 @@ If you're new to Django, we recommend first reading the official guide to Writin
 Updating an existing Django project
 To prepare an existing Django project for production on Render, we'll make a couple adjustments to its configuration:
 
+![Running Django on Render](../images/running_django_on_render.png)
+
 We'll update your project to use a Render PostgreSQL database instead of a SQLite database.
 We'll configure the WhiteNoise package to serve your project's static files.
 We'll define a build script to run with each deploy.

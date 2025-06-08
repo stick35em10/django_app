@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+import dj_database_url
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,8 +33,20 @@ DEBUG = True
 #Invalid HTTP_HOST header: 'django-hfxu.onrender.com'. You may need to add 'django-hfxu.onrender.com
 
 
-ALLOWED_HOSTS = ['django-hfxu.onrender.com','127.0.0.1','django-app-0hq7.onrender.com']
+ALLOWED_HOSTS = [
+    'django-hfxu.onrender.com',
+    '127.0.0.1',
+    'django-app-0hq7.onrender.com',
+    '8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev',
+    '8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev',
+    'localhost',
+    ]
 
+# Add the domain to CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-cs-81214997791-default.cs-asia-southeast1-fork.cloudshell.dev',
+    'http://localhost:8000',
+]
 
 # Application definition
 
@@ -50,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     # ... other middleware ...
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -76,14 +95,71 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
+#DATABASE_NAME=dbtodo_1q1f
+#DATABASE_USER=userdbtodo
+#DATABASE_PASSWORD=ZLJhQpucquFZJl20ywbSxuvVXZLPkkai
+#DATABASE_HOST=dpg-d103sg6mcj7s7386avmg-a.frankfurt-postgres.render.com
+#DATABASE_PORT=5432 
+
+#port = os.environ.get('PORT')
+"""
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'), #'test-postgres-dbtodo',  # The name of your PostgreSQL database
+        'USER': os.environ.get('DATABASE_USER'), #'your_db_user',          # Your PostgreSQL username
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'), #'your_db_password',  # Your PostgreSQL password
+        'HOST': os.environ.get('DATABASE_HOST'), #'localhost',             # Or the IP address/hostname of your PostgreSQL server
+        'PORT': '5432',                  # Default PostgreSQL port, change if yours is different
     }
 }
+"""
+# "linw 113",line 113 postgres://stick35em10:None@None:None/None
+print("line 113", f"postgres://{os.getenv('USER')}:{os.getenv('PASSWORD')}@{os.getenv('HOST')}:{os.getenv('PORT')}/{os.getenv('NAME')}")
+# "line 115",
+print("line 115", f"postgres://{os.environ.get('DATABASE_USER')}:{os.environ.get('DATABASE_PASSWORD')}@{os.environ.get('DATABASE_HOST')}:{os.environ.get('DATABASE_PORT')}/{os.environ.get('DATABASE_NAME')}")
 
+ENGINE = 'django.db.backends.postgresql' #,
+NAME = os.environ.get('DATABASE_NAME') #, #'test-postgres-dbtodo',  # The name of your PostgreSQL database
+USER = os.environ.get('DATABASE_USER') #, #'your_db_user',          # Your PostgreSQL username
+PASSWORD = os.environ.get('DATABASE_PASSWORD') #, #'your_db_password',  # Your PostgreSQL password
+HOST = os.environ.get('DATABASE_HOST') #, #'localhost',             # Or the IP address/hostname of your PostgreSQL server
+PORT = '5432' #,
 
+import dj_database_url
+
+"""
+#DATABASE_URL = f'postgres://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
+#
+DATABASES = {
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
+}
+"""
+
+print("line 133", f"postgres://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}")
+
+db_url = f'postgres://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
+# "line 137 ",
+print("line 138 ", f" {db_url}")  # Add this line
+DATABASES = {
+    'default': dj_database_url.config(
+        default=db_url,
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+#DATABASES = {
+#    'default': dj_database_url.config(default=f'postgres://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}', conn_max_age=600, ssl_require=True)
+    #password@localhost:5432/dbname')
+#}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
