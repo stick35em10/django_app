@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'projects_management', # <-- Adicione sua nova app aqui
 ]
 
 MIDDLEWARE = [
