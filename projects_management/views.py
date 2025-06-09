@@ -9,7 +9,7 @@ from .forms import ProjectoForm
 def lista_projectos(request):
     projectos = Project.objects.all()
     # projectos/lista.html done in 8. (Opcional) Crie templates
-    return render(request, 'projectos/lista.html', {'projectos': projectos})
+    return render(request, 'projects_management/lista.html', {'projectos': projectos})
 
 def criar_projecto(request):
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def criar_projecto(request):
     else:
         form = ProjectoForm()
         # must do in 8. (Opcional) Crie templates
-    return render(request, 'projectos/form.html', {'form': form})
+    return render(request, 'projects_management/form.html', {'form': form})
 
 def atualizar_status(request, pk, novo_status):
     projecto = get_object_or_404(Project, pk=pk)
