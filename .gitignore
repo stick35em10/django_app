@@ -1,2 +1,16 @@
 venv
 mysite/__pycache__/*
+venv_dj_database_url/
+venv_run_db_script/
+db.sqlite3
+mysite/__pycache__/settings.cpython-312.pyc
+mysite/__pycache__/*/
+mysite/__pycache__/*
+projects_management/migrations/__pycache__/*
+ mysite/__pycache__/settings.cpython-312.pyc
+
+mysite/__pycache__/*
+projects_management/__pycache__/*.cpython-312.pyc
+
+projects_management/__pycache__/admin.cpython-312.pyc
+projects_management/__pycache__/models.cpython-312.pyc
