@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.lista_projectos, name='lista_projectos'),
+    path('novo/', views.criar_projecto, name='criar_projecto'),
+    path('atualizar/<int:pk>/<str:novo_status>/', views.atualizar_status, name='atualizar_status'),
+
 ]
+
+
