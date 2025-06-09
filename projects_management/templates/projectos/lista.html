@@ -1,0 +1,11 @@
+<h1>Projectos</h1>
+<ul>
+{% for projecto in projectos %}
+    <li>
+        {{ projecto.nome }} - {{ projecto.status }}
+        <a href="{% url 'atualizar_status' projecto.pk 'DOING' %}">Iniciar</a>
+        <a href="{% url 'atualizar_status' projecto.pk 'DONE' %}">Concluir</a>
+    </li>
+{% endfor %}
+</ul>
+<a href="{% url 'criar_projecto' %}">Novo Projecto</a>

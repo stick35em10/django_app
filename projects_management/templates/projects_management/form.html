@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Projeto</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        form { background: #f9f9f9; padding: 20px; border-radius: 8px; max-width: 500px; margin: 20px auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], select {
+            width: calc(100% - 22px); /* Account for padding/border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul.errorlist {
+            color: red;
+            list-style: none;
+            padding: 0;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Criar Novo Projeto</h1>
+
+    <form method="post">
+        {% csrf_token %} {# IMPORTANT: This is for security to prevent Cross-Site Request Forgery #}
+
+        {# Render the form fields #}
+        {{ form.as_p }} {# Renders each field as a paragraph #}
+
+        {# You can also render fields manually for more control: #}
+        {#
+        <div>
+            <label for="{{ form.name.id_for_label }}">Nome do Projeto:</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                <ul class="errorlist">
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div>
+            <label for="{{ form.status.id_for_label }}">Status Inicial:</label>
+            {{ form.status }}
+            {% if form.status.errors %}
+                <ul class="errorlist">
+                    {% for error in form.status.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        #}
+
+        <button type="submit">Salvar Projeto</button>
+    </form>
+
+    <p><a href="{% url 'project_list' %}">Voltar para a lista de projetos</a></p>
+
+</body>
+</html>
